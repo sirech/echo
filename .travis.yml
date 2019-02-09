@@ -1,14 +1,26 @@
 language: java
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
 stages:
 - test
+- name: docker
+  if: branch = master AND type IN (push)
 jobs:
   include:
   - stage: test
-    script: ./go test-unit
+    script: "./go test-unit"
+  - stage: docker
+    script:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD $DOCKER_REGISTRY
+    - docker build . --tag $DOCKER_REGISTRY/echo
+    - docker push $DOCKER_REGISTRY/echo
+env:
+  global:
+  - secure: GS1aI5rD3Ms2ibB8iUvF+ylHUm/skUmgH0+WzHtMt5ggca5ivlTWSaVNeRV1YAvrbMhRJJDrKskYIfOMtP/7Z5uKCwtDmWEOFrV8Mr5PM2W/9t/9JDy06qTmOPgReEdhNan3n3DlrJIHqD5577HWdJsPUZE/pIB5pXyBR4dnWzSVlX9KcjsxXX77S3xf1gekdSfbvC0DCYK7wJa9b8nu/Thvanyc1zOx8BZY1U491MhYThT8dizhXM/EhmEqgeYjiR93gePa9UTvYstvSAqT3JsGZQnwjzqXU/iVPuri4MIaMwwqYozZKmNfZYf6V+HIHOw0nX08XFUZXAdenohZpm1x6k4YOHqBeLh6GO0Fc9muwv61yEFR4Cbwvl5shzBGmVhFOdtAQrVGoXjN39f6vnJzOy2hI2aGCbSdW3+JbjzP3wEk5V8DYGmd+4r54WVOcj4D+eAttTmNDFD6+ldGAGoPpBubn0UPwdkRXYsg5akRpvjOW9201q3DcuYEK4fEa9zKNpWcCmV1kkyTWmLHOhYTpvtiyfnOQlmeOZrjLLMLVWwnuATQlE5N25uEesEhxvWZDwi77XOlBGvXrif9fQpNfpg866P0d1d44rFtILR9XpsckmaDeQdlgxERAiUY+VFSfR7O5x4BjSSpRqzSxXRQ3a0H47QEP+2pnq6SNHY=
+  - secure: Vt7ENYq5GNIb2K0R7127LEMKXxHdPY51R0Flcwk5pGuttonoTo9Xvq34mNaNTAZkDK51ICjCbeG9hCAbyhZ0E5i5GYohMZHZBT5Eejd2RfI8tBU/kxDW8vPr48Y+jy36hDKiJyiZ0Wa2VEf0uPO13UOHx7DshaWHaYYVyy5U5jVOU+kBT1WJBRpIpnmX6DFJGWuoQNGpa6t3l7Ui4rnD5Treq5KijD7ztLQSZBd47ZDMDR+yq2y0GvUKn4k/ns2+tKDvTNHI0nBnPJ/pAc+7wGgxtHz1TUr2mLBUhGdfa6vFbSQaES+89sjAd5RGJnLDUpAidxJxXlDyPKYsOV/1pcQQAA/mUmoq16s+INm4foXabRtWYhtiHNU2gEm8RjFDuGy7wCnAjWACqn4RRx0edjOZCPGaBwGaaPgr94A9JTboDZyOdmEHn1NdoXYkoN98FhVxH1BaIVGywSPIXE0b5cjvoBo5E9HTc6KGRCMd9RLY5fv6tW2CmN6hADBmvWYU9lQ3uI2XoebPdO46nXPX8qoKnyWq517GC1/8JQSWJys86tMWQe0Amlvv5L5A28AWuxQVhEgOHXRzjRGO2Tx0wK9C+C82scRIfz96pSFfbpIOmCTLhFE+TX7ld/WcVI5O69Oxl7SOisEOWZnJyU/li4LPTVNmOG4AOf2HEKPuRhg=
+  - secure: WbkZN8OnefUrHe5rUk+lPndT933qn9LNP7eGloceKb8B9SadvBjYxUba90Vpu/+Qvu+SNnsjNra+2yuG97hfyvGS8WfGfBGu6gbjs3itbLFDHpY5Hde2PH+a5Tt6JlXpL7M2yFjT3RjaXCK1gvg4dXp7jcA4b/vnhFA8xcscjIxI5G/H/AIPFubVnKs6kIVAffOdhKdVFnyalyDl08GA45LXGvHB0wLGlAkhJ8TSR5k1NLTDfWI0dh3Fmb0sPOGEeSzNpmoj6gmLgqJI0L8VjtY9QqnkRDx4S/F7W+lPom8SMfMn5oOaITXNHi7hKhaebc4iUI223VAMkL4Dr9SeIzex0EKzAFZPceRYQkD49sfregTFfMgSXmMXdIW5BUy2ySz3xZSMWA73klovjCbWHQmSAShOcyd0/tao05GGRJ0zkjPjSilNcITYSoszjDGcQfvHQRZdoXbjK5WWSg8sWOk0emqZy5Xp7bn/OmqR1t3iGp3nBenzZovc4XDfoIM7/iIfTZxWcACnDDNqaA1DXZopiMa9aCu/MUXviBJ8gVepkvVkPzluDMeNNwJY9QmGh9TecL5IHraoT+k1uaNMM0ZF2hIe3xoJ23WUt6POLcNBVirnoDVXDhRrcNQzKduDqz6mPuSnTOxicH57RGZeb/Grg12Wry4snCZK2LIlzTs=
