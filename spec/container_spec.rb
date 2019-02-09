@@ -15,6 +15,10 @@ describe 'Container' do
       its(:args) { is_expected.to contain('echo.jar') }
       its(:user) { is_expected.to eq('runner') }
     end
+
+    describe 'listens to correct port' do
+      it { wait_for(port(4000)).to be_listening.with('tcp') }
+    end
   end
 
   describe file('echo.jar') do
