@@ -7,6 +7,6 @@ import org.springframework.boot.runApplication
 class EchoApplication
 
 fun main(args: Array<String>) {
-	runApplication<EchoApplication>(*args)
+    runApplication<EchoApplication>(*args)
 }
 
