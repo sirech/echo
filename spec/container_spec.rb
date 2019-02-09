@@ -9,6 +9,12 @@ describe 'Container' do
     describe command('java -version') do
       its(:stderr) { is_expected.to match(/1.8.0_191/) }
     end
+
+    describe process('java') do
+      it { is_expected.to be_running }
+      its(:args) { is_expected.to contain('echo.jar') }
+      its(:user) { is_expected.to eq('runner') }
+    end
   end
 
   describe file('echo.jar') do
