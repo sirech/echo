@@ -1,0 +1,7 @@
+language: java
+stages:
+- test
+jobs:
+  include:
+  - stage: test
+    script: ./go test-unit
