@@ -5,6 +5,16 @@ describe 'Container' do
     its(:content) { is_expected.to match(/3.9.0/) }
   end
 
+  %i[dumb-init].each do |package|
+    describe package(package) do
+      it { is_expected.to be_installed }
+    end
+  end
+
+  describe process('/usr/bin/dumb-init') do
+    it { is_expected.to be_running }
+  end
+
   describe 'java' do
     describe command('java -version') do
       its(:stderr) { is_expected.to match(/1.8.0_191/) }
