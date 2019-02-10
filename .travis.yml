@@ -29,6 +29,7 @@ jobs:
     - openssl aes-256-cbc -K $encrypted_8ff1c1d2d1ae_key -iv $encrypted_8ff1c1d2d1ae_iv
       -in deploy_rsa.enc -out deploy_rsa -d
     - chmod 600 deploy_rsa
+    install: true
     script: skip
     deploy:
       provider: script
@@ -36,6 +37,7 @@ jobs:
       script: ssh -i deploy_rsa $DEPLOY_USER@$DEPLOY_HOST "sh ${DEPLOY_PATH}/bin/update
         echo"
   - stage: healthcheck
+    install: true
     script: curl --connect-timeout 60 -s -f -o /dev/null "${SITE_URL}/hello"
 env:
   global:
