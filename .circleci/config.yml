@@ -25,3 +25,28 @@ jobs:
 
       - store_artifacts:
           path: ~/junit
+
+  docker:
+
+    docker:
+      - image: docker:dind
+
+    steps:
+
+      - setup_remote_docker
+
+      - run:
+          name: Build docker image
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD $DOCKER_REGISTRY
+            docker build . --tag $DOCKER_REGISTRY/echo
+            docker push $DOCKER_REGISTRY/echo
+
+workflows:
+  version: 2
+  cd_pipeline:
+    jobs:
+      - build
+      - docker:
+          requires:
+            - build
