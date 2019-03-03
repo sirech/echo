@@ -67,4 +67,4 @@ workflows:
             - build
       - healthcheck:
           requires:
-            docker
+            - docker
