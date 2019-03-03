@@ -46,6 +46,14 @@ jobs:
             docker build . --tag $DOCKER_REGISTRY/echo
             docker push $DOCKER_REGISTRY/echo
 
+  deploy:
+
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+    steps:
+      - run: ssh -i deploy_rsa $DEPLOY_USER@$DEPLOY_HOST "sh ${DEPLOY_PATH}/bin/update echo"
+
   healthcheck:
 
     docker:
@@ -65,6 +73,9 @@ workflows:
               only: master
           requires:
             - build
-      - healthcheck:
+      - deploy:
           requires:
             - docker
+      - healthcheck:
+          requires:
+            - deploy
