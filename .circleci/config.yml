@@ -52,7 +52,8 @@ jobs:
       - image: circleci/openjdk:8-jdk
 
     steps:
-      - run: ssh -i deploy_rsa $DEPLOY_USER@$DEPLOY_HOST "sh ${DEPLOY_PATH}/bin/update echo"
+      - add_ssh_keys
+      - run: ssh $DEPLOY_USER@$DEPLOY_HOST "sh ${DEPLOY_PATH}/bin/update echo"
 
   healthcheck:
 
