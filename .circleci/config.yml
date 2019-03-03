@@ -53,9 +53,7 @@ jobs:
 
     steps:
       - add_ssh_keys:
-          fingerprints:
-            - 5b:51:48:b1:58:f8:3b:2a:02:e2:a2:7e:18:17:8f:23
-      - run: ssh $DEPLOY_USER@$DEPLOY_HOST "sh ${DEPLOY_PATH}/bin/update echo"
+      - run: ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST "sh ${DEPLOY_PATH}/bin/update echo"
 
   healthcheck:
 
