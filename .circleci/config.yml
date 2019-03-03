@@ -52,8 +52,8 @@ workflows:
     jobs:
       - build
       - docker:
-          branches:
-            only:
-              - master
+          filters:
+            branches:
+              only: master
           requires:
             - build
