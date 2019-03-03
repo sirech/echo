@@ -21,14 +21,39 @@ jobs:
           path: ~/junit
       - store_artifacts:
           path: ~/junit
+      - run: ./go build
 
-      - setup_remote_docker:
-          docker_layer_caching: true
+      - persist_to_workspace:
+          root: build/libs
+          paths:
+            - echo.jar
 
+  docker:
+
+    docker:
+      - image: docker:dind
+
+    steps:
+
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          at: build/libs
       - run:
           name: Build docker image
           command: |
-            ./go build
-            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin $DOCKER_REGISTRY
+            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD $DOCKER_REGISTRY
             docker build . --tag $DOCKER_REGISTRY/echo
             docker push $DOCKER_REGISTRY/echo
+
+workflows:
+  version: 2
+  cd_pipeline:
+    jobs:
+      - build
+      - docker:
+          branches:
+            only:
+              - master
+          requires:
+            - build
