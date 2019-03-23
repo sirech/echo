@@ -1,6 +1,6 @@
 ## Echo
 
-[![Build Status](https://travis-ci.org/sirech/echo.svg?branch=master)](https://travis-ci.org/sirech/echo)
+[![CircleCI](https://circleci.com/gh/sirech/echo.svg?style=svg)](https://circleci.com/gh/sirech/echo)
 
 This is an echo service that can be used as a test JSON Api
 
