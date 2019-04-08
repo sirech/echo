@@ -17,6 +17,7 @@ jobs:
             mkdir -p ~/junit/
             find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/junit/ \;
           when: always
+
       - store_test_results:
           path: ~/junit
       - store_artifacts:
@@ -40,9 +41,9 @@ jobs:
       - attach_workspace:
           at: build/libs
       - run:
-          name: Build docker image
+          name: Publish docker image
           command: |
-            docker login -u $DOCKER_USER -p $DOCKER_PASSWORD $DOCKER_REGISTRY
+            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER $DOCKER_REGISTRY --password-stdin
             docker build . --tag $DOCKER_REGISTRY/echo
             docker push $DOCKER_REGISTRY/echo
 
