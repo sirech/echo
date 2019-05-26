@@ -62,7 +62,7 @@ jobs:
       - image: circleci/openjdk:8-jdk
 
     steps:
-      - run: curl --connect-timeout 60 -s -f -o /dev/null "${SITE_URL}/hello"
+      - run: curl --connect-timeout 300 -s -f -o /dev/null "${SITE_URL}/hello"
 
 workflows:
   version: 2
