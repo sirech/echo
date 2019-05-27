@@ -16,6 +16,10 @@ goal_outdated() {
   ./gradlew dependencyUpdates
 }
 
+goal_linter-kt() {
+  ./gradlew detekt
+}
+
 goal_test-unit() {
   ./gradlew clean test
 }
@@ -37,6 +41,8 @@ goal_help() {
     run                      -- Start the backend application
 
     outdated                 -- Check which dependencies are outdated
+
+    linter-kt                -- Run the linter for kotlin files
 
     test-unit                -- Run unit tests
     test-container           -- Run container tests
