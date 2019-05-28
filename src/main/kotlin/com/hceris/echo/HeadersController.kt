@@ -1,6 +1,8 @@
 package com.hceris.echo
 
 import com.fasterxml.jackson.annotation.JsonValue
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -13,8 +15,10 @@ private const val PATH = "/headers"
 
 @RestController
 @RequestMapping(PATH, produces = [MediaType.APPLICATION_JSON_VALUE])
+@Api(value = "headers", description = "this controller mirrors the headers passed to the request")
 class HeadersController {
     @GetMapping("")
+    @ApiOperation(value = "Returns the headers passed to the request as a JSON object in the body")
     fun headers(@RequestHeader headers: HttpHeaders): ResponseEntity<Map<String, HeaderValue>> {
         return ResponseEntity.ok(format(headers))
     }
