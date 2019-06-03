@@ -18,8 +18,8 @@ class ListController {
 
     @GetMapping("numbers/{elements}")
     fun numbers(@PathVariable("elements") elements: Int): ResponseEntity<Numbers> {
-        val elements = Math.min(elements, 100)
-        return ResponseEntity.ok(formatNumbers(elements))
+        val range = Math.min(elements, 100)
+        return ResponseEntity.ok(formatNumbers(range))
     }
 
     fun formatNumbers(elements: Int) = Numbers((1..elements).toList())

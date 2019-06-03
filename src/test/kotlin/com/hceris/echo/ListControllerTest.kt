@@ -1,6 +1,5 @@
 package com.hceris.echo
 
-import org.junit.Ignore
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.extension.ExtendWith
