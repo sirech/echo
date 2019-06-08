@@ -32,7 +32,59 @@
   en: salmon
   de: lachs
   jp: shake
-
-
-
-
+-
+  es: rodaballo
+  en: turbot
+  de: steinbutt
+  fr: turbot
+-
+  es: lenguado
+  en: sole
+  de: seezunge
+  fr: sole
+-
+  es: caballa
+  en: mackerel
+  de: makrele
+  fr: maquereau
+  jp: saba
+-
+  es: sardina
+  en: sardine
+  de: sardine
+  fr: sardine
+  jp: iwashi
+-
+  es: anchoa
+  en: anchovy
+  de: sardelle
+  fr: anchois
+  jp: anchobi
+-
+  es: vieria
+  en: scallop
+  de: jakobsmuschel
+  fr: petoncle
+  jp: hotate
+-
+  es: pulpo
+  en: octopus
+  de: oktopus
+  fr: poulpe
+  jp: tako
+-
+  es: gamba
+  en: prawn
+  de: garnele
+  fr: crevette
+  jp: ebi
+-
+  es: langostino
+  en: shrimp
+  de: garnele
+  fr: crevette
+  jp: ebi
+-
+  es: cigala
+  en: crayfish
+  de: kaisergranat
