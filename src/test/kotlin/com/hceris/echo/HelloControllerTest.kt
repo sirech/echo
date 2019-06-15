@@ -31,7 +31,7 @@ internal class HelloControllerTest(@Autowired val webApplicationContext: WebAppl
     fun `hello returns name`() {
         mockMvc.perform(get("/hello/you")
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(content().json("""{ "name": "you" }"""))
+                .andExpect(content().json("""{ "name": "You" }"""))
                 .andExpect(status().isOk)
     }
 }

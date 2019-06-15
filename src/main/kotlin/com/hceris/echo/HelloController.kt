@@ -1,5 +1,7 @@
 package com.hceris.echo
 
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonValue
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiParam
@@ -18,14 +20,25 @@ private const val PATH = "/hello"
 class HelloController {
     @GetMapping("")
     fun world(): ResponseEntity<Salutation> {
-        return ResponseEntity.ok(Salutation("world"))
+        return ResponseEntity.ok(Salutation(Name("world")))
     }
 
     @GetMapping("{name}")
     @ApiOperation(value = "Greets you back")
-    fun there(@ApiParam("Your name") @PathVariable("name") name: String): ResponseEntity<Salutation> {
+    fun there(@ApiParam("Your name") @PathVariable("name") name: Name): ResponseEntity<Salutation> {
         return ResponseEntity.ok(Salutation(name))
     }
 }
 
-data class Salutation(val name: String)
+data class Name(private val value: String) {
+    companion object {
+        @JvmStatic
+        @JsonCreator
+        fun create(value: String) = Name(value.capitalize())
+    }
+
+    @JsonValue
+    override fun toString() = value
+}
+
+data class Salutation(val name: Name)
