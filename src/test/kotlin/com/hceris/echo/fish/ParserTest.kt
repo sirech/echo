@@ -1,9 +1,9 @@
-package com.hceris.echo.fishes
+package com.hceris.echo.fish
 
 import org.junit.jupiter.api.Test
 
 internal class ParserTest {
-    val parser = Parser("fishes.yaml".asStream().readTextAndClose())
+    val parser = Parser("fish.yaml".asStream().readTextAndClose())
 
     @Test
     fun `it works`() {

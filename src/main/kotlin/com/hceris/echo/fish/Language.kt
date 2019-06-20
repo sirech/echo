@@ -1,4 +1,4 @@
-package com.hceris.echo.fishes
+package com.hceris.echo.fish
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonValue

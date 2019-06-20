@@ -1,7 +1,7 @@
 package com.hceris.echo
 
-import com.hceris.echo.fishes.Fish
-import com.hceris.echo.fishes.FishList
+import com.hceris.echo.fish.Fish
+import com.hceris.echo.fish.FishList
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-private const val PATH = "/fishes"
+private const val PATH = "/fish"
 
 @RestController
 @RequestMapping(PATH)
@@ -18,7 +18,7 @@ class FishController {
     lateinit var fishList: FishList
 
     @GetMapping("{fish}")
-    fun fishes(@PathVariable("fish") fish: String): ResponseEntity<Fish> {
+    fun fish(@PathVariable("fish") fish: String): ResponseEntity<Fish> {
         return fishList.findFish(fish)?.run {
             ResponseEntity.ok(this)
         } ?: ResponseEntity.notFound().build()

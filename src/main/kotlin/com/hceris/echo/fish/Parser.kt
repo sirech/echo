@@ -1,4 +1,4 @@
-package com.hceris.echo.fishes
+package com.hceris.echo.fish
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory

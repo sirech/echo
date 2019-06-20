@@ -1,4 +1,4 @@
-package com.hceris.echo.fishes
+package com.hceris.echo.fish
 
 import java.io.InputStream
 import java.nio.charset.Charset

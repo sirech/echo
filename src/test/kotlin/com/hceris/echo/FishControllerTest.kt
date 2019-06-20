@@ -28,14 +28,14 @@ internal class FishControllerTest(@Autowired val webApplicationContext: WebAppli
 
     @Test
     fun `returns an empty hash if there are no corresponding entries`() {
-        mockMvc.perform(get("/fishes/gamusino")
+        mockMvc.perform(get("/fish/gamusino")
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(status().isNotFound)
     }
 
     @Test
     fun `returns the entry for a full match`() {
-        mockMvc.perform(get("/fishes/merluza")
+        mockMvc.perform(get("/fish/merluza")
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(content().json(template))
                 .andExpect(status().isOk)
@@ -43,7 +43,7 @@ internal class FishControllerTest(@Autowired val webApplicationContext: WebAppli
 
     @Test
     fun `is case insensitive`() {
-        mockMvc.perform(get("/fishes/Merluza")
+        mockMvc.perform(get("/fish/Merluza")
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(content().json(template))
                 .andExpect(status().isOk)
@@ -51,7 +51,7 @@ internal class FishControllerTest(@Autowired val webApplicationContext: WebAppli
 
     @Test
     fun `returns the entry for a partial match`() {
-        mockMvc.perform(get("/fishes/teufel")
+        mockMvc.perform(get("/fish/teufel")
                 .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(content().json("""{
                     | "es": "rape",

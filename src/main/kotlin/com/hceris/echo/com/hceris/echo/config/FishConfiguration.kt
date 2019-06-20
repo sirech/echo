@@ -1,13 +1,13 @@
 package com.hceris.echo.com.hceris.echo.config
 
-import com.hceris.echo.fishes.Parser
-import com.hceris.echo.fishes.asStream
-import com.hceris.echo.fishes.readTextAndClose
+import com.hceris.echo.fish.Parser
+import com.hceris.echo.fish.asStream
+import com.hceris.echo.fish.readTextAndClose
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
 class FishConfiguration {
     @Bean
-    fun fishList() = Parser("fishes.yaml".asStream().readTextAndClose()).parsed
+    fun fishList() = Parser("fish.yaml".asStream().readTextAndClose()).parsed
 }
