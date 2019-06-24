@@ -8,7 +8,8 @@ enum class Language(private val language: String) {
     DE("de"),
     EN("en"),
     FR("fr"),
-    JP("jp");
+    JP("jp"),
+    IT("it");
 
     companion object {
         @JvmStatic
