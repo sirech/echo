@@ -33,7 +33,11 @@ jobs:
   docker:
 
     docker:
-      - image: docker:dind
+      - image: sirech/dind-ruby:2.6.3
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
 
     steps:
 
@@ -41,6 +45,17 @@ jobs:
       - setup_remote_docker
       - attach_workspace:
           at: build/libs
+
+      - restore_cache:
+          key: bundle-2-{{ checksum "Gemfile.lock" }}
+      - run: bundle check || bundle install --without ops development
+      - save_cache:
+          key: bundle-2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run: ./go containerize
+      - run: ./go test-container
+
       - run:
           name: Publish docker image
           command: |
