@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -e
+set -o nounset
+set -o pipefail
+
 goal_build() {
   ./gradlew assemble
 }
