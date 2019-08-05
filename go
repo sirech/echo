@@ -4,6 +4,11 @@ set -e
 set -o nounset
 set -o pipefail
 
+SCRIPT_DIR=$(cd "$(dirname "$0")" ; pwd -P)
+
+# shellcheck source=./go.helpers
+source "${SCRIPT_DIR}/go.helpers"
+
 goal_build() {
   ./gradlew assemble
 }
@@ -32,6 +37,11 @@ goal_test-container() {
   bundle install
   bundle exec rubocop
   bundle exec rspec spec
+}
+
+goal_test-e2e() {
+  setup-newman
+  run-newman
 }
 
 goal_help() {

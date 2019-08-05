@@ -1,0 +1,11 @@
+{
+	"id": "425cf4df-d994-4d91-9efb-41eba1ead456",
+	"name": "echo",
+	"values": [
+		{
+			"key": "host",
+			"value": "${HOST}",
+			"enabled": true
+		}
+	]
+}

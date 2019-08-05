@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+
+setup-newman() {
+  settings=/tmp/settings.json.$$
+  result=/tmp/variables.json.$$
+
+  # shellcheck disable=SC2064
+  trap "rm -f \"$settings\" \"$result\"" EXIT
+}
+
+run-newman() {
+  local service="echo"
+
+  envsubst < "$service.environment.json.template" > "$settings"
+
+  npx newman run "$service.json" \
+      -e "${settings}" \
+      --export-environment "${result}"
+}

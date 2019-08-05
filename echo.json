@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "ca5df421-99e6-496e-85ae-a5c67b3f308f",
+		"name": "echo",
+		"description": "Test collection for echo service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "hello",
+			"item": [
+				{
+					"name": "Say hello",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b4bd422-8300-4afb-91e1-ab412c75b9fe",
+								"exec": [
+									"var getResults = function() {",
+									"    return pm.response.json();",
+									"};",
+									"",
+									"pm.test(\"Right response\", function () {",
+									"    pm.expect(getResults()).to.include({ name: \"world\"})",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/hello",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"hello"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Say something else",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b4bd422-8300-4afb-91e1-ab412c75b9fe",
+								"exec": [
+									"var getResults = function() {",
+									"    return pm.response.json();",
+									"};",
+									"",
+									"pm.test(\"Right response\", function () {",
+									"    pm.expect(getResults()).to.include({ name: \"Dude\"})",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/hello/dude",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"hello",
+								"dude"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "list",
+			"item": [
+				{
+					"name": "get numbers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b4bd422-8300-4afb-91e1-ab412c75b9fe",
+								"exec": [
+									"var getResults = function() {",
+									"    return pm.response.json();",
+									"};",
+									"",
+									"pm.test(\"Right response\", function () {",
+									"    pm.expect(getResults().elements).to.have.members([1,2,3,4,5])",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/list/numbers/5",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"list",
+								"numbers",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "fish",
+			"item": [
+				{
+					"name": "get fish",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b4bd422-8300-4afb-91e1-ab412c75b9fe",
+								"exec": [
+									"var getResults = function() {",
+									"    return pm.response.json();",
+									"};",
+									"",
+									"pm.test(\"Right response\", function () {",
+									"    pm.expect(getResults()).to.include({ es: \"rodaballo\"})",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/fish/tur",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"fish",
+								"tur"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "headers",
+			"item": [
+				{
+					"name": "get headers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b4bd422-8300-4afb-91e1-ab412c75b9fe",
+								"exec": [
+									"var getResults = function() {",
+									"    return pm.response.json();",
+									"};",
+									"",
+									"pm.test(\"Right response\", function () {",
+									"    pm.expect(getResults()).to.include({",
+									"        accept: \"application/json\",",
+									"        \"accept-language\": \"en-EN\"",
+									"    })",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "en-EN",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{host}}/headers",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"headers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "cb93eae5-c22b-4532-86c7-b8da9e5c5477",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "18d7a2ad-1b9f-45a2-b67b-cb8e86a7d707",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	]
+}
