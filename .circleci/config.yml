@@ -78,6 +78,7 @@ jobs:
       - image: sirech/newman-executor:12.6
 
     steps:
+      - checkout
       - run: ./go test-e2e
 
 workflows:
