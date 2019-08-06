@@ -75,10 +75,10 @@ jobs:
   healthcheck:
 
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: sirech/newman-executor:12.6
 
     steps:
-      - run: curl --connect-timeout 300 -s -f -o /dev/null "${SITE_URL}/hello"
+      - run: ./go test-e2e
 
 workflows:
   version: 2

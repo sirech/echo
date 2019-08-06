@@ -60,6 +60,7 @@ goal_help() {
 
     test-unit                -- Run unit tests
     test-container           -- Run container tests
+    test-e2e                 -- Run newman tests
     "
   exit 1
 }
