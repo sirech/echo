@@ -59,8 +59,6 @@ dependencies {
     testCompile "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testCompile "org.junit.jupiter:junit-jupiter-params:$junitVersion"
     testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
-
-    testCompile "org.assertj:assertj-core:3.13.2"
 }
 
 compileKotlin {
