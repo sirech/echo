@@ -7,18 +7,20 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 private const val PATH = "/list"
+private const val NUMBERS_DEFAULT = 5
+private const val NUMBERS_MAX = 100
 
 @RestController
 @RequestMapping(PATH)
 class ListController {
     @GetMapping("numbers")
     fun numbersDefault(): ResponseEntity<Numbers> {
-        return ResponseEntity.ok(formatNumbers(5))
+        return ResponseEntity.ok(formatNumbers(NUMBERS_DEFAULT))
     }
 
     @GetMapping("numbers/{elements}")
     fun numbers(@PathVariable("elements") elements: Int): ResponseEntity<Numbers> {
-        val range = Math.min(elements, 100)
+        val range = elements.coerceAtMost(NUMBERS_MAX)
         return ResponseEntity.ok(formatNumbers(range))
     }
 

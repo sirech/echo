@@ -5,7 +5,7 @@ buildscript {
         jacksonVersion = '2.10.2'
         swaggerVersion = '2.9.2'
         junitVersion = '5.5.2'
-        detektVersion = '1.4.0'
+        detektVersion = '1.5.1'
     }
     repositories {
         mavenCentral()
@@ -87,4 +87,5 @@ test {
 detekt {
     toolVersion = "${detektVersion}"
     input = files("src/main/kotlin", "src/test/kotlin")
+    config = files("detekt-config.yml")
 }
