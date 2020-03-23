@@ -5,7 +5,7 @@ buildscript {
         jacksonVersion = '2.10.3'
         swaggerVersion = '2.9.2'
         junitVersion = '5.5.2'
-        detektVersion = '1.6.0'
+        detektVersion = '1.7.0'
     }
     repositories {
         mavenCentral()
