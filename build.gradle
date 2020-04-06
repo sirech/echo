@@ -4,7 +4,7 @@ buildscript {
         springBootVersion = '2.2.6.RELEASE'
         jacksonVersion = '2.10.3'
         swaggerVersion = '2.9.2'
-        junitVersion = '5.5.2'
+        junitVersion = '5.6.1'
         detektVersion = '1.7.4'
     }
     repositories {
