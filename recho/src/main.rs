@@ -1,36 +1,13 @@
-use std::collections::HashMap;
-use std::env;
-use std::error::Error;
+mod fish;
+mod host;
+
+#[macro_use]
+extern crate prettytable;
 
 #[macro_use]
 extern crate clap;
 
-#[macro_use]
-extern crate prettytable;
-use prettytable::Table;
-
-fn request(host: &str, query: &str) -> Result<HashMap<String, String>, reqwest::Error> {
-    reqwest::blocking::get(&format!("{}/fish/{}", host, query))?.json()
-}
-
-fn host(host: Option<&str>) -> String {
-    match host {
-        Some(v) => v.to_string(),
-        None => env::var("HOST").unwrap_or("http://localhost:4000".to_string()),
-    }
-}
-
-fn pretty_print(result: HashMap<String, String>) {
-    let mut table = Table::new();
-
-    table.add_row(row![bFg -> "language", b -> "name"]);
-
-    for (k, v) in result.iter() {
-        table.add_row(row![k, v]);
-    }
-
-    table.printstd();
-}
+use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let matches = clap_app!(app =>
@@ -44,13 +21,12 @@ fn main() -> Result<(), Box<dyn Error>> {
     )
     .get_matches();
 
-    let host = host(matches.value_of("HOST"));
+    let host = host::host(matches.value_of("HOST"));
 
     if let Some(matches) = matches.subcommand_matches("fish") {
         let query = matches.value_of("QUERY").unwrap();
-        let body = request(&host, &query)?;
-
-        pretty_print(body);
+        let body = fish::request(&host, &query)?;
+        fish::pretty_print(body);
     }
 
     Ok(())
