@@ -13,10 +13,10 @@ fn request(host: &str, query: &str) -> Result<HashMap<String, String>, reqwest::
     reqwest::blocking::get(&format!("{}/fish/{}", host, query))?.json()
 }
 
-fn host(host: Option<&str>) -> Result<String, env::VarError> {
+fn host(host: Option<&str>) -> String {
     match host {
-        Some(v) => Ok(v.to_string()),
-        None => env::var("HOST"),
+        Some(v) => v.to_string(),
+        None => env::var("HOST").unwrap_or("http://localhost:4000".to_string()),
     }
 }
 
@@ -43,7 +43,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     )
     .get_matches();
 
-    let host = host(matches.value_of("HOST"))?;
+    let host = host(matches.value_of("HOST"));
 
     if let Some(matches) = matches.subcommand_matches("fish") {
         let query = matches.value_of("QUERY").unwrap();
