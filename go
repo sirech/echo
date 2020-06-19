@@ -44,6 +44,12 @@ goal_test-e2e() {
   run-newman
 }
 
+goal_install-cli() {
+  (cd recho &&
+     cargo install --path .
+  )
+}
+
 validate-args() {
   acceptable_args="$(declare -F | sed -n "s/declare -f goal_//p" | tr '\n' ' ')"
 
