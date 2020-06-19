@@ -35,7 +35,8 @@ fn pretty_print(result: HashMap<String, String>) {
 fn main() -> Result<(), Box<dyn Error>> {
     let matches = clap_app!(app =>
                             (version: "0.0.1")
-                            (@arg HOST: -h --host +takes_value "Host destination")
+                            (@setting SubcommandRequiredElseHelp)
+                            (@arg HOST: -h --host <host> +takes_value "Host destination")
                             (@subcommand fish =>
                              (about: "fish in different languages")
                              (@arg QUERY: +required "Query String")
