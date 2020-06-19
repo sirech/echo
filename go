@@ -44,34 +44,27 @@ goal_test-e2e() {
   run-newman
 }
 
-goal_help() {
-  echo "usage: $0 <goal>
+validate-args() {
+  acceptable_args="$(declare -F | sed -n "s/declare -f goal_//p" | tr '\n' ' ')"
 
-    goal:
+  if [[ -z $1 ]]; then
+    echo "usage: $0 <goal>"
+    # shellcheck disable=SC2059
+    printf "\n$(declare -F | sed -n "s/declare -f goal_/ - /p")"
+    exit 1
+  fi
 
-    build                    -- Build the deployable artifacts
-    containerize             -- Build the docker container for the app
-
-    run                      -- Start the backend application
-
-    outdated                 -- Check which dependencies are outdated
-
-    linter-kt                -- Run the linter for kotlin files
-
-    test-unit                -- Run unit tests
-    test-container           -- Run container tests
-    test-e2e                 -- Run newman tests
-    "
-  exit 1
-}
-
-main() {
-  TARGET=${1:-}
-  if [ -n "${TARGET}" ] && type -t "goal_$TARGET" &>/dev/null; then
-    "goal_$TARGET" "${@:2}"
-  else
-    goal_help
+  if [[ ! " $acceptable_args " =~ .*\ $1\ .* ]]; then
+    echo "Invalid argument: $1"
+    # shellcheck disable=SC2059
+    printf "\n$(declare -F | sed -n "s/declare -f goal_/ - /p")"
+    exit 1
   fi
 }
 
-main "$@"
+CMD=${1:-}
+shift || true
+if validate-args "${CMD}"; then
+  "goal_${CMD}"
+  exit 0
+fi
