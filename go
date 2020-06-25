@@ -22,7 +22,13 @@ goal_run() {
 }
 
 goal_outdated() {
+  echo '** Gradle dependencies **'
   ./gradlew dependencyUpdates
+
+  echo '** Rust dependencies **'
+  (cd recho &&
+     cargo outdated -d 1 --exit-code 1
+  )
 }
 
 goal_linter-kt() {
