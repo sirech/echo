@@ -22,7 +22,7 @@ internal class ListControllerTest(@Autowired val webApplicationContext: WebAppli
     @Test
     fun `numbers returns a list of numbers`() {
         mockMvc.perform(get("/list/numbers")
-                .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(content().json("""{ "elements": [1, 2, 3, 4, 5] }"""))
                 .andExpect(status().isOk)
     }
@@ -30,7 +30,7 @@ internal class ListControllerTest(@Autowired val webApplicationContext: WebAppli
     @Test
     fun `numbers can customize the length of the list`() {
         mockMvc.perform(get("/list/numbers/7")
-                .accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(content().json("""{ "elements": [1, 2, 3, 4, 5, 6, 7] }"""))
                 .andExpect(status().isOk)
     }
