@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        kotlinVersion = '1.4.21'
+        kotlinVersion = '1.4.30-RC'
         springBootVersion = '2.4.2'
         jacksonVersion = '2.12.1'
         swaggerVersion = '3.0.0'
@@ -18,7 +18,7 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
-        classpath "com.github.ben-manes:gradle-versions-plugin:0.33.0"
+        classpath "com.github.ben-manes:gradle-versions-plugin:0.36.0"
 
         // Linter
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${detektVersion}"
