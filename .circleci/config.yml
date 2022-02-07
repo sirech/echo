@@ -79,6 +79,7 @@ jobs:
 
     steps:
       - checkout
+      - run: sleep 30 # wait for container to come up
       - run: ./go test-e2e
 
 workflows:
