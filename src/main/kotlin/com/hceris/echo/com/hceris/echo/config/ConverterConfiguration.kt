@@ -6,6 +6,10 @@ import org.springframework.core.convert.converter.Converter
 import org.springframework.format.FormatterRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
+class NameConverter : Converter<String, Name> {
+    override fun convert(source: String) = Name.create(source)
+}
+
 @Configuration
 class ConverterConfiguration : WebMvcConfigurer {
     override fun addFormatters(registry: FormatterRegistry) {
@@ -13,6 +17,6 @@ class ConverterConfiguration : WebMvcConfigurer {
     }
 
     private fun nameConverter(): Converter<String, Name> {
-        return Converter<String, Name> { source -> Name.create(source) }
+        return NameConverter()
     }
 }
