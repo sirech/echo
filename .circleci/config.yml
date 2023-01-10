@@ -75,7 +75,7 @@ jobs:
   healthcheck:
 
     docker:
-      - image: sirech/newman-executor:15.5
+      - image: sirech/newman-executor:19.3
 
     steps:
       - checkout
