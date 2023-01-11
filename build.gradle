@@ -3,7 +3,6 @@ buildscript {
         kotlinVersion = '1.8.0'
         springBootVersion = '2.5.9'
         jacksonVersion = '2.12.6'
-        swaggerVersion = '3.0.0'
         junitVersion = '5.9.2'
         detektVersion = '1.19.0'
     }
@@ -51,9 +50,6 @@ dependencies {
 
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jacksonVersion}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
-
-    implementation "io.springfox:springfox-swagger2:$swaggerVersion"
-    implementation "io.springfox:springfox-swagger-ui:$swaggerVersion"
 
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
