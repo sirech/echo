@@ -3,7 +3,7 @@ buildscript {
         kotlinVersion = '1.8.21'
         springBootVersion = '2.7.14'
         jacksonVersion = '2.14.1'
-        junitVersion = '5.9.3'
+        junitVersion = '5.10.0'
         detektVersion = '1.23.0'
     }
     repositories {
