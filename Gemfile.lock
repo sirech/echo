@@ -21,8 +21,7 @@ GEM
     racc (1.8.0)
     rainbow (3.1.1)
     regexp_parser (2.9.2)
-    rexml (3.2.8)
-      strscan (>= 3.0.9)
+    rexml (3.3.9)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -77,11 +76,11 @@ GEM
       net-ssh (>= 2.7)
       net-telnet
       sfl
-    strscan (3.1.0)
     unicode-display_width (2.5.0)
 
 PLATFORMS
   arm64-darwin-23
+  x86_64-linux
 
 DEPENDENCIES
   docker-api
